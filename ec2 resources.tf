@@ -8,7 +8,7 @@ resource "aws_autoscaling_group" "three-tier-web-asg" {
   desired_capacity     = 2
 }
 
-# Create an EC2 Auto Scaling Group - app
+# Create an EC2 Auto Scaling Group - app -test
 resource "aws_autoscaling_group" "three-tier-app-asg" {
   name                 = "three-tier-app-asg"
   launch_configuration = aws_launch_configuration.three-tier-app-lconfig.id
