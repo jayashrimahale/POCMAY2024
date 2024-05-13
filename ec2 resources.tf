@@ -8,7 +8,7 @@ resource "aws_autoscaling_group" "three-tier-web-asg" {
   desired_capacity     = 2
 }
 
-# Create an EC2 Auto Scaling Group - app -test
+# Create an EC2 Auto Scaling Group - app
 resource "aws_autoscaling_group" "three-tier-app-asg" {
   name                 = "three-tier-app-asg"
   launch_configuration = aws_launch_configuration.three-tier-app-lconfig.id
@@ -23,9 +23,9 @@ resource "aws_autoscaling_group" "three-tier-app-asg" {
 # Create a launch configuration for the EC2 instances
 resource "aws_launch_configuration" "three-tier-web-lconfig" {
   name_prefix                 = "three-tier-web-lconfig"
-  image_id                    = "ami-0b3a4110c36b9a5f0"
+  image_id                    = "ami-0f58b397bc5c1f2e8"
   instance_type               = "t2.micro"
-  key_name                    = "three-tier-web-asg-kp"
+  key_name                    = "terraformmay2024"
   security_groups             = [aws_security_group.three-tier-ec2-asg-sg.id]
   user_data                   = <<-EOF
                                 #!/bin/bash
@@ -130,9 +130,9 @@ resource "aws_launch_configuration" "three-tier-web-lconfig" {
 # Create a launch configuration for the EC2 instances
 resource "aws_launch_configuration" "three-tier-app-lconfig" {
   name_prefix                 = "three-tier-app-lconfig"
-  image_id                    = "ami-0b3a4110c36b9a5f0"
+  image_id                    = "ami-0f58b397bc5c1f2e8"
   instance_type               = "t2.micro"
-  key_name                    = "three-tier-app-asg-kp"
+  key_name                    = "terraformmay2024"
   security_groups             = [aws_security_group.three-tier-ec2-asg-sg-app.id]
   user_data                   = <<-EOF
                                 #!/bin/bash
