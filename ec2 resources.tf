@@ -66,7 +66,7 @@ resource "aws_launch_configuration" "three-tier-web-lconfig" {
                                         <div class="wrapper">
                                             <div class="container">
                                                 <h1>Welcome! An Apache web server has been started successfully.</h1>
-                                                <p>Replace this with your own index.html file in /var/www/html.</p>
+                                                h2>Jayashri Mahale</h2>
                                             </div>
                                         </div>
                                     </body>
