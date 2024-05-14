@@ -10,12 +10,12 @@ resource "aws_db_instance" "three-tier-db" {
   allocated_storage           = 100
   storage_type                = "gp3"
   engine                      = "mysql"
-  engine_version              = "8.0.35"
+  engine_version              = "8.0"
   instance_class              = "db.t3.micro"
   identifier                  = "three-tier-db"
   username                    = "admin"
   password                    = "23vS5TdDW8*o"
-  parameter_group_name        = "default.mysql8.0.35"
+  parameter_group_name        = "default.mysql8.0"
   db_subnet_group_name        = aws_db_subnet_group.three-tier-db-sub-grp.name
   vpc_security_group_ids      = ["${aws_security_group.three-tier-db-sg.id}"]
   #availability_zone           = "ap-southeast-2a"
