@@ -11,7 +11,7 @@ resource "aws_db_instance" "three-tier-db" {
   storage_type                = "gp3"
   engine                      = "mysql"
   engine_version              = "8.0.35"
-  instance_class              = "db.t2.micro"
+  instance_class              = "db.t3.micro"
   identifier                  = "three-tier-db"
   username                    = "admin"
   password                    = "admin"
