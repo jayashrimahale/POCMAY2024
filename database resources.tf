@@ -14,7 +14,7 @@ resource "aws_db_instance" "three-tier-db" {
   instance_class              = "db.t3.micro"
   identifier                  = "three-tier-db"
   username                    = "admin"
-  password                    = "admin"
+  password                    = "23vS5TdDW8*o"
   parameter_group_name        = "default.mysql8.0.35"
   db_subnet_group_name        = aws_db_subnet_group.three-tier-db-sub-grp.name
   vpc_security_group_ids      = ["${aws_security_group.three-tier-db-sg.id}"]
