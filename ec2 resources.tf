@@ -31,16 +31,16 @@ resource "aws_launch_configuration" "three-tier-web-lconfig" {
                                 #!/bin/bash
 
                                 # Update the system
-                                sudo yum -y update
+                                sudo apt-get -y update
 
                                 # Install Apache web server
-                                sudo yum -y install httpd
+                                sudo apt install apache2
+                                sudo ufw app list
+                                sudo ufw allow 'Apache'
+                                sudo ufw status
 
                                 # Start Apache web server
-                                sudo systemctl start httpd.service
-
-                                # Enable Apache to start at boot
-                                sudo systemctl enable httpd.service
+                                sudo systemctl start apache2
 
                                 # Create index.html file with your custom HTML
                                 sudo echo '
