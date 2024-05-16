@@ -143,7 +143,7 @@ resource "aws_launch_configuration" "three-tier-app-lconfig" {
                                 
   associate_public_ip_address = false
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
     ignore_changes  = all
   }
 }
