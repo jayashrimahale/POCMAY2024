@@ -34,7 +34,7 @@ resource "aws_db_instance" "three-tier-db" {
   publicly_accessible          = false
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
     ignore_changes  = all
   }
 }
