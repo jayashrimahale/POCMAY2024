@@ -29,49 +29,37 @@ resource "aws_launch_configuration" "three-tier-web-lconfig" {
   security_groups             = [aws_security_group.three-tier-ec2-asg-sg.id]
   user_data                   = <<-EOF
                                 #!/bin/bash
-
                                 # Update the system
                                 sudo apt-get -y update
-
                                 # Install Apache web server
                                 sudo apt install apache2
                                 sudo ufw app list
                                 sudo ufw allow 'Apache'
                                 sudo ufw status
-
                                 # Start Apache web server
                                 sudo systemctl start apache2
-
                                 # Create index.html file with your custom HTML
-                                sudo echo '
+                                cat <<EOT > /var/www/html/index.html
                                 <!DOCTYPE html>
                                 <html lang="en">
                                     <head>
                                         <meta charset="utf-8" />
                                         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
                                         <title>A Basic HTML5 Template</title>
-
                                         <link rel="preconnect" href="https://fonts.googleapis.com" />
                                         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-                                        <link
-                                            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
-                                            rel="stylesheet"
-                                        />
-
+                                        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
                                         <link rel="stylesheet" href="css/styles.css?v=1.0" />
                                     </head>
-
                                     <body>
                                         <div class="wrapper">
                                             <div class="container">
                                                 <h1>Welcome! An Apache web server has been started successfully.</h1>
-                                                h2>Jayashri Mahale</h2>
+                                                <h2>Jayashri Mahale</h2>
                                             </div>
                                         </div>
                                     </body>
                                 </html>
-
                                 <style>
                                     body {
                                         background-color: #34333d;
@@ -81,7 +69,6 @@ resource "aws_launch_configuration" "three-tier-web-lconfig" {
                                         font-family: Inter;
                                         padding-top: 128px;
                                     }
-
                                     .container {
                                         box-sizing: border-box;
                                         width: 741px;
@@ -99,11 +86,10 @@ resource "aws_launch_configuration" "three-tier-web-lconfig" {
                                         gap: 24;
                                         border-radius: 24px;
                                     }
-
                                     .container h1 {
                                         flex-shrink: 0;
                                         width: 100%;
-                                        height: auto; /* 144px */
+                                        height: auto;
                                         position: relative;
                                         color: #ffffff;
                                         line-height: 1.2;
@@ -116,8 +102,7 @@ resource "aws_launch_configuration" "three-tier-web-lconfig" {
                                         font-size: 18px;
                                     }
                                 </style>
-                                ' > /var/www/html/index.html
-
+                                EOT
                                 EOF
                                 
   associate_public_ip_address = true
