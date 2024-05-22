@@ -122,7 +122,7 @@ resource "aws_launch_configuration" "three-tier-app-lconfig" {
   user_data                   = <<-EOF
                                 #!/bin/bash
 
-                                sudo yum install mysql -y
+                                sudo apt install mysql-server -y
 
                                 EOF
                                 
