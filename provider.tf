@@ -12,3 +12,7 @@ provider "aws" {
   region  = "ap-south-1"
 
 }
+
+data "vault_generic_secret" "db_credentials" {
+  path = "secret/three-tier-db"
+}
