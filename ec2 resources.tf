@@ -28,11 +28,12 @@ resource "aws_autoscaling_policy" "web_target_tracking_policy" {
   target_tracking_configuration {
     predefined_metric_specification {
       predefined_metric_type = "ALBRequestCountPerTarget"
-      resource_label         = "${aws_lb_target_group.web_target_group.arn}/${aws_lb.three_tier_alb.load_balancer_arn_suffix}"
+      resource_label         = "${aws_lb_target_group.three-tier-web-lb-tg.arn}/${aws_lb.three-tier-web-lb.load_balancer_arn_suffix}"
     }
-    target_value = 100.0  # Adjust this value based on your load
+    target_value = 100.0
   }
 }
+
 
 # Auto Scaling Policy for scaling up/down based on Request Count Per Target - App ASG
 resource "aws_autoscaling_policy" "app_target_tracking_policy" {
@@ -44,9 +45,9 @@ resource "aws_autoscaling_policy" "app_target_tracking_policy" {
   target_tracking_configuration {
     predefined_metric_specification {
       predefined_metric_type = "ALBRequestCountPerTarget"
-      resource_label         = "${aws_lb_target_group.app_target_group.arn}/${aws_lb.three_tier_alb.load_balancer_arn_suffix}"
+      resource_label         = "${aws_lb_target_group.three-tier-app-lb-tg.arn}/${aws_lb.three-tier-app-lb.load_balancer_arn_suffix}"
     }
-    target_value = 100.0  # Adjust this value based on your load
+    target_value = 100.0
   }
 }
 
