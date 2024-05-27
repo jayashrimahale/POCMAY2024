@@ -18,6 +18,38 @@ resource "aws_autoscaling_group" "three-tier-app-asg" {
   desired_capacity     = 2
 }
 
+# Auto Scaling Policy for scaling up/down based on Request Count Per Target - Web ASG
+resource "aws_autoscaling_policy" "web_target_tracking_policy" {
+  name                   = "web-target-tracking-policy"
+  policy_type            = "TargetTrackingScaling"
+  estimated_instance_warmup = 300
+  autoscaling_group_name = aws_autoscaling_group.three-tier-web-asg.name
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ALBRequestCountPerTarget"
+      resource_label         = "${aws_lb_target_group.web_target_group.arn}/${aws_lb.three_tier_alb.load_balancer_arn_suffix}"
+    }
+    target_value = 100.0  # Adjust this value based on your load
+  }
+}
+
+# Auto Scaling Policy for scaling up/down based on Request Count Per Target - App ASG
+resource "aws_autoscaling_policy" "app_target_tracking_policy" {
+  name                   = "app-target-tracking-policy"
+  policy_type            = "TargetTrackingScaling"
+  estimated_instance_warmup = 300
+  autoscaling_group_name = aws_autoscaling_group.three-tier-app-asg.name
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ALBRequestCountPerTarget"
+      resource_label         = "${aws_lb_target_group.app_target_group.arn}/${aws_lb.three_tier_alb.load_balancer_arn_suffix}"
+    }
+    target_value = 100.0  # Adjust this value based on your load
+  }
+}
+
 ###################################################################################################################################
 
 # Create a launch configuration for the EC2 instances
