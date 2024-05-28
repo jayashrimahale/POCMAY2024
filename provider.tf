@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 provider "vault" {
-  address = "http://127.0.0.1:8200"
+  address = "http://127.0.0.1:8300"
 }
 
 data "vault_generic_secret" "db_credentials" {
