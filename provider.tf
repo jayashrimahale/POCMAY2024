@@ -19,4 +19,4 @@ provider "aws" {
 
 data "vault_generic_secret" "db_credentials" {
   path = "secret/three-tier-db"
-}
+}*/
