@@ -15,8 +15,8 @@ resource "aws_db_instance" "three-tier-db" {
   identifier                  = "three-tier-db"
   #username                    = data.vault_generic_secret.db_credentials.data["username"]
   #password                    = data.vault_generic_secret.db_credentials.data["password"]
-   username                     =admin
-   password                     ="mypass"
+   username                    = "admin"
+   password                    = "mypass"
   parameter_group_name        = "default.mysql8.0"
   db_subnet_group_name        = aws_db_subnet_group.three-tier-db-sub-grp.name
   vpc_security_group_ids      = ["${aws_security_group.three-tier-db-sg.id}"]
